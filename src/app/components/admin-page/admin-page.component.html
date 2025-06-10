@@ -1,0 +1,114 @@
+
+<nz-layout class="app-layout">
+  <nz-sider
+    class="menu-sidebar"
+    nzTheme="light"
+    nzCollapsible
+    nzWidth="256px"
+    nzBreakpoint="md"
+    [(nzCollapsed)]="isCollapsed"
+    [nzTrigger]="null"
+  >
+    <div class="sidebar-logo flex items-center justify-start py-2">
+      <a href="" target="_blank">
+<!--        <h1 class="text-xl font-bold text-[#EC5504]">{{ userName }}</h1>-->
+      </a>
+    </div>
+    <ul nz-menu  nzTheme="light" nzMode="inline" [nzInlineCollapsed]="isCollapsed" class="px-4!">
+      <li nz-submenu nzTitle="Thể loại" nzIcon="bars">
+        <ul>
+          <li nz-menu-item nzMatchRouter>
+            <a [routerLink]="['banner-home']">Thêm thể loại</a>
+          </li>
+        </ul>
+      </li>
+      <li nz-submenu nzTitle="Tác giả" nzIcon="user">
+        <ul>
+          <li nz-menu-item nzMatchRouter>
+            <a [routerLink]="['banner-about-us']">Thêm tác giả</a>
+          </li>
+        </ul>
+      </li>
+      <li nz-submenu nzTitle="Tin tức" nzIcon="notification">
+        <ul>
+          <li nz-menu-item nzMatchRouter>
+            <a [routerLink]="['banner-news']">Banner News</a>
+          </li>
+          <li nz-menu-item nzMatchRouter>
+            <a [routerLink]="['news-list']">Lists News</a>
+          </li>
+        </ul>
+      </li>
+      <li nz-submenu nzTitle="Dịch vụ" nzIcon="customer-service">
+        <ul>
+          <li nz-menu-item nzMatchRouter>
+            <a [routerLink]="['banner-service']">Banner Service</a>
+          </li>
+          <li nz-menu-item nzMatchRouter>
+            <a [routerLink]="['feature-services']">Feature Service</a>
+          </li>
+        </ul>
+      </li>
+      <li nz-submenu nzTitle="Dự án" nzIcon="project">
+        <ul>
+          <li nz-menu-item nzMatchRouter>
+            <a [routerLink]="['banner-project']">Banner Project</a>
+          </li>
+          <li nz-menu-item nzMatchRouter>
+            <a [routerLink]="['feature-project']">Feature Project</a>
+          </li>
+        </ul>
+      </li>
+      <li nz-submenu nzTitle="Liên hệ" nzIcon="phone">
+        <ul>
+          <li nz-menu-item nzMatchRouter>
+            <a [routerLink]="['banner-contact']">Banner Contact</a>
+          </li>
+          <li nz-menu-item nzMatchRouter>
+            <a [routerLink]="['list-contact']">Contact Customer</a>
+          </li>
+        </ul>
+      </li>
+      <li nz-submenu nzTitle="Quản lý" nzIcon="database">
+        <ul>
+          <li nz-menu-item nzMatchRouter>
+            <a [routerLink]="['member']">Member</a>
+          </li>
+        </ul>
+      </li>
+      <li
+        class="btn-logout"
+        nz-menu-item
+        nz-tooltip
+        nzTooltipPlacement="right"
+        [nzTooltipTitle]="isCollapsed ? 'Logout' : ''"
+        nzSelected
+
+      >
+        <div class="logout">
+          <nz-icon nzType="logout" class="icon" />
+          <span class="text-logout">LOGOUT</span>
+        </div>
+      </li>
+    </ul>
+  </nz-sider>
+  <nz-layout>
+    <nz-header>
+      <div class="app-header">
+        <span
+          class="header-trigger"
+          (click)="isCollapsed = !isCollapsed"
+          (keydown.enter)="isCollapsed = !isCollapsed"
+          tabindex="0"
+        >
+          <nz-icon class="trigger" [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'" />
+        </span>
+      </div>
+    </nz-header>
+    <nz-content>
+      <div class="inner-content">
+        <router-outlet></router-outlet>
+      </div>
+    </nz-content>
+  </nz-layout>
+</nz-layout>
