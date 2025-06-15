@@ -1,19 +1,20 @@
 import {Component, inject, OnInit} from '@angular/core';
-import {NzButtonComponent} from 'ng-zorro-antd/button';
 import {RouterLink, RouterOutlet} from '@angular/router';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import {AuthorResDTO, CategoryResDTO} from './home/interface';
 import {HomeService} from './home/home.service';
+import {NgIf} from '@angular/common';
+import {AuthService} from '../../core/service/auth.service';
 @Component({
   selector: 'app-landing-page',
   standalone: true,
   imports: [
     NzDropDownModule,
-    NzButtonComponent,
     NzIconModule,
     RouterOutlet,
-    RouterLink
+    RouterLink,
+    NgIf
   ],
   templateUrl: './landing-page.component.html',
   styleUrl: './landing-page.component.scss'
@@ -21,9 +22,17 @@ import {HomeService} from './home/home.service';
 export class LandingPageComponent implements OnInit {
   dataCategory: CategoryResDTO[] =[];
   dataAuthor: AuthorResDTO[] =[];
-
-
+  authService = inject(AuthService);
+  isLogin = this.authService.isAuthenticated();
   homeService = inject(HomeService);
+
+
+
+  logout(){
+    this.authService.logout();
+  }
+
+
 
   getDataCategory(){
     this.homeService.getAllData2().subscribe(data => {

@@ -6,10 +6,11 @@ import {faTags, faCalendarDays, faBookOpen} from '@fortawesome/free-solid-svg-ic
 import {FaIconComponent} from '@fortawesome/angular-fontawesome';
 import {HomeService} from '../home.service';
 import {BookResDTO} from '../interface';
+import {NgIf} from '@angular/common';
 @Component({
   selector: 'app-home-page',
   standalone: true,
-  imports: [NzInputModule, NzIconModule, FaIconComponent],
+  imports: [NzInputModule, NzIconModule, FaIconComponent, NgIf],
   templateUrl: './home-page.component.html',
   styleUrl: './home-page.component.scss'
 })
@@ -33,4 +34,6 @@ export class HomePageComponent implements OnInit {
      this.dataBook = res;
     })
   }
+
+
 }

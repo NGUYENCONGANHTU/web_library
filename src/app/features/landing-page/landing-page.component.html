@@ -12,22 +12,22 @@
     </div>
     <ul class="navbar-menu flex justify-between items-end gap-10 text-[17px]">
         <li><a [routerLink]="['/landing']" class="text-black hover:text-[#FFA359]">Trang chủ</a> </li>
-        <li>
+        <li *ngIf="dataCategory && dataCategory.length > 0">
           <a class="text-black hover:text-[#FFA359]" [nzPlacement]="'bottomCenter'" nzTrigger="click" nz-dropdown [nzDropdownMenu]="categoryMenu">
             Thể loại
             <nz-icon nzType="down" />
           </a>
-          <nz-dropdown-menu #categoryMenu="nzDropdownMenu">
+          <nz-dropdown-menu #categoryMenu="nzDropdownMenu" >
             <ul nz-menu class="w-[360px] flex flex-wrap gap-1 mt-1!">
               @for (item of dataCategory; track $index) {
                 <li nz-menu-item>
-                  <a [routerLink]="['category',item.id]">{{item.name}}</a>
+                  <a [routerLink]="['category',item.id]" class="!hover:text-[#FFA359]">{{item.name}}</a>
                 </li>
               }
             </ul>
           </nz-dropdown-menu>
         </li>
-        <li>
+        <li *ngIf="dataAuthor && dataAuthor.length > 0">
         <a class="text-black hover:text-[#FFA359]" [nzPlacement]="'bottomCenter'" nzTrigger="click" nz-dropdown [nzDropdownMenu]="authorMenu">
           Tác giả
           <nz-icon nzType="down" />
@@ -42,9 +42,9 @@
           </ul>
         </nz-dropdown-menu>
       </li>
-        <li><a href="" class="text-black hover:text-[#FFA359]">Phiếu mượn</a> </li>
+        <li><a [routerLink]="['borrowing-page']" class="text-black hover:text-[#FFA359]">Phiếu mượn</a> </li>
         <li>
-            <button  [routerLink]="['/']" class="border px-3 py-[1px] bg-[#00659e] !text-white cursor-pointer rounded-sm">Đăng nhập</button>
+            <button (click)="logout()"  class="border px-3 py-[1px] bg-[#00659e] !text-white cursor-pointer rounded-sm">{{ isLogin? 'Đăng xuất': 'Đăng nhập' }}</button>
         </li>
     </ul>
   </div>
@@ -53,5 +53,5 @@
   <router-outlet></router-outlet>
 </main>
 <footer>
-  <span class="block text-sm bg-gray-100  text-gray-500 sm:text-center dark:text-gray-400 p-5!">© 2025 <a href="" class="hover:underline">Nguyễn Chí Lân</a>. All Rights Reserved.</span>
+  <span class="block text-sm bg-gray-100 text-gray-500 sm:text-center dark:text-gray-400 p-5!">© 2025 <a href="" class="hover:underline">Nguyễn Chí Lân</a>. All Rights Reserved.</span>
 </footer>

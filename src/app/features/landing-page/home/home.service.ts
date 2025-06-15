@@ -1,7 +1,15 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {environment} from '../../../../../environments/environment';
-import {AuthorReqDTO, AuthorResDTO, BookReqDTO, BookResDTO, CategoryReqDTO, CategoryResDTO} from './interface';
+import {
+  AuthorReqDTO,
+  AuthorResDTO,
+  BookReqDTO,
+  BookResDTO,
+  BorrowingReqDTO, BorrowingResDTO,
+  CategoryReqDTO,
+  CategoryResDTO, UserReqDTO, UserResDTO
+} from './interface';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +19,8 @@ export class HomeService {
   apiUrl = environment.API_URL+'/categories';
   apiUrl2 = environment.API_URL+'/books';
   apiUrl3 = environment.API_URL+'/authors';
+  apiUrl4 = environment.API_URL+'/borrowings';
+  apiUrl5 = environment.API_URL+'/users';
 
   /* Book */
   // Api-Post
@@ -42,7 +52,6 @@ export class HomeService {
   deleteData(id: number) {
     return this.http.delete<BookResDTO>(`${this.apiUrl2}/${id}`);
   }
-
 
   /* Thể loại */
   // Api-Post
@@ -88,4 +97,50 @@ export class HomeService {
     return this.http.delete<AuthorResDTO>(`${this.apiUrl3}/${id}`);
   }
 
+  /* Phiếu mượn */
+  // Api-Post
+  createData4(data: BorrowingReqDTO) {
+    return this.http.post<BorrowingResDTO>(this.apiUrl4, data);
+  }
+  // Api Get All data
+  getAllData4() {
+    return this.http.get<BorrowingResDTO[]>(this.apiUrl4);
+  }
+  getUserData4(username:string) {
+    return this.http.get<BorrowingResDTO[]>(`${this.apiUrl4}/user/${username}`);
+  }
+  // Api-Get ( Read )
+  getDataById4(id: number) {
+    return this.http.get<BorrowingResDTO>(`${this.apiUrl4}/${id}`);
+  }
+  //update
+  updateData4(id: number, data: BorrowingReqDTO) {
+    return this.http.put<BorrowingResDTO>(`${this.apiUrl4}/${id}`, data);
+  }
+  //delete
+  deleteData4(id: number) {
+    return this.http.delete<BorrowingResDTO>(`${this.apiUrl4}/${id}`);
+  }
+
+  /* Người dùng */
+  // Api-Post
+  createData5(data: UserReqDTO) {
+    return this.http.post<UserResDTO>(this.apiUrl5, data);
+  }
+  // Api Get All data
+  getAllData5() {
+    return this.http.get<UserResDTO[]>(this.apiUrl5);
+  }
+  // Api-Get ( Read )
+  getDataById5(id: number) {
+    return this.http.get<UserResDTO>(`${this.apiUrl5}/${id}`);
+  }
+  //update
+  updateData5(id: number, data: UserReqDTO) {
+    return this.http.put<UserResDTO>(`${this.apiUrl5}/${id}`, data);
+  }
+  //delete
+  deleteData5(id: number) {
+    return this.http.delete<UserResDTO>(`${this.apiUrl5}/${id}`);
+  }
 }
