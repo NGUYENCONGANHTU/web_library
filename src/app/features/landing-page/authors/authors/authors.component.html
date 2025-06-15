@@ -15,16 +15,16 @@
 
     @for (card of dataBookAuthor ; track card.id) {
 
-      <div class="card-item bg-white rounded-lg shadow-md overflow-hidden max-w-xs mx-auto">
+      <div class="card-item bg-white rounded-lg shadow-md overflow-hidden  w-full mx-auto">
         <img
           [src]="card.image"
           [alt]="card.name"
-          class="w-full h-48 object-cover"
+          class="w-full h-48 object-cover bg-cover bg-center"
         />
         <!--      book info-->
         <div class="info-book p-2 !space-y-2" >
           <div class="title">
-            <a href="" class="text-[18px] font-semibold text-gray-900 mb-1">
+            <a class="text-[18px] font-semibold text-gray-900 mb-1">
               {{card.name}}
             </a>
           </div>
